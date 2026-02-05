@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Supabase (se usar)
-    const supabaseUrl = "https://beditqcysolsxdppnvdz.supabase.co";
-    const supabaseKey = "SUA_CHAVE_PUBLICA"; // coloque sua chave aqui
+    const supabaseUrl = "https://bxxgjhfvihzxmrzgmcdd.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4eGdqaGZ2aWh6eG1yemdtY2RkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyNjIwNzEsImV4cCI6MjA4NTgzODA3MX0.ms4_Ngum3_Kf0OxmzmUVhY94j4-h3ZYrQRuu_AGecok"; // coloque sua chave aqui
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
     function adicionarPessoa() {
