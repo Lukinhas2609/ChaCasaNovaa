@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Presença</title>
+    <link rel="stylesheet" href="confirmar.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- FORMULÁRIO -->
+<div id="formulario">
+    <h1>Confirme sua presença</h1>
+
+    <p class="texto">
+        Queridos amigos e familiares! <br><br>
+        Confirme sua presença para que possamos preparar tudo com carinho.
+    </p>
+
+    <form id="formPresenca">
+
+        <div id="lista-pessoas">
+            <div class="pessoa">
+                <input type="text" placeholder="Nome" required>
+                <input type="text" placeholder="Sobrenome" required>
+                <button type="button" class="remover" onclick="this.parentElement.remove()">✕</button>
+            </div>
+        </div>
+
+        <button type="button" class="btn-secundario" onclick="adicionarPessoa()">
+            + Adicionar pessoa
+        </button>
+
+        <div class="botoes">
+            <a href="index.html" class="btn-voltar">← Voltar</a>
+            <button type="button" class="btn" id="confirmar">Confirmar Presença</button>
+        </div>
+
+    </form>
+</div>
+
+<script>
+function adicionarPessoa() {
+    const lista = document.getElementById('lista-pessoas');
+    const novaPessoa = document.createElement('div');
+    novaPessoa.className = 'pessoa';
+    novaPessoa.innerHTML = `
+        <input type="text" placeholder="Nome" required>
+        <input type="text" placeholder="Sobrenome" required>
+        <button type="button" class="remover" onclick="this.parentElement.remove()">✕</button>
+    `;
+    lista.appendChild(novaPessoa);
+}
+
+document.getElementById('confirmar').addEventListener('click', function() {
+    const pessoas = document.querySelectorAll('#lista-pessoas .pessoa');
+
+    for (let i = 0; i < pessoas.length; i++) {
+        const inputs = pessoas[i].querySelectorAll('input');
+        const nome = inputs[0].value.trim();
+        const sobrenome = inputs[1].value.trim();
+
+        if (nome === "" || sobrenome === "") {
+            alert(`Por favor, preencha Nome e Sobrenome`);
+            return; // Bloqueia o redirecionamento
+        }
+    }
+
+    // Pergunta se realmente quer confirmar
+    const confirmacao = confirm("Tem certeza que deseja confirmar a presença?");
+    if (confirmacao) {
+        window.location.href = 'localizacao.html'; // redireciona
+    }
+});
+</script>
+
+        </form>
+    </div>
+
+
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Inicializa Supabase
+  const supabaseUrl = "https://beditqcysolsxdppnvdz.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJlZGl0cWN5c29sc3hkcHBudmR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyNDIyNDAsImV4cCI6MjA4NTgxODI0MH0.LHG8VYKmFaE3qwtE81s37UAiGYeI6-xbiZvHS8LNaNA";
+
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // Função para adicionar nova pessoa
+  function adicionarPessoa() {
+      const div = document.createElement("div");
+      div.className = "pessoa";
+      div.innerHTML = `
+          <input type="text" placeholder="Nome" required>
+          <input type="text" placeholder="Sobrenome" required>
+          <button type="button" class="remover" onclick="this.parentElement.remove()">✕</button>
+      `;
+      document.getElementById("lista-pessoas").appendChild(div);
+  }
+
+  // Função para mostrar a localização
+  function mostrarLocalizacao() {
+      document.getElementById("formulario").style.display = "none";
+      document.getElementById("localizacao").classList.remove("hidden");
+  }
+
+  // Função para enviar todos os nomes para Supabase
+  async function confirmarPresenca() {
+      const pessoas = [...document.querySelectorAll("#lista-pessoas .pessoa")].map(div => {
+          return {
+              nome: div.querySelector('input[placeholder="Nome"]').value.trim(),
+              sobrenome: div.querySelector('input[placeholder="Sobrenome"]').value.trim()
+          };
+      });
+
+      if (pessoas.length === 0) {
+          alert("Adicione pelo menos uma pessoa.");
+          return;
+      }
+
+      const { error } = await supabase
+          .from('presencas')
+          .insert(pessoas);
+
+      if (error) {
+          alert("Erro ao confirmar presença. Veja o console para detalhes.");
+          console.error(error);
+      } else {
+          mostrarLocalizacao();
+      }
+  }
+
+  // Evento do formulário
+  document.getElementById('formPresenca').addEventListener('submit', function(e) {
+      e.preventDefault();
+      confirmarPresenca();
+  });
+</script>
+
+</body>
+</html>
