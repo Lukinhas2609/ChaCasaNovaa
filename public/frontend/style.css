@@ -1,4 +1,4 @@
-/* Reset CSS */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -11,72 +11,63 @@
     width: 100%;
     background-image: url("./img/fundo.png");
     background-size: cover;
-    background-position: 50% 30%;
+    background-position: center;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
+    align-items: center;
 }
 
-/* Camada escura */
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.25);
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-/* Glass effect */
 .glass {
-    backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 40px 50px;
     text-align: center;
     color: #ffe600;
     max-width: 90%;
-    overflow: auto;
-    animation: fadeUp 1.2s ease forwards;
+    animation: fadeUp 1s ease forwards;
 }
 
 .glass h1 {
     font-size: 3rem;
-    margin: 0;
+    margin-bottom: 15px;
 }
 
 .nomes {
-    font-size: 1.4rem;
-    margin: 10px 0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
 .data {
     font-size: 1.2rem;
-    margin: 15px 0 25px;
+    margin-bottom: 20px;
 }
 
-/* Mensagem acolhedora */
 .mensagem {
     font-size: 1.1rem;
-    margin: 20px 0;
     line-height: 1.5;
-    color: #ffffff;
-    text-align: center;
+    margin-bottom: 25px;
 }
 
-/* Botões agrupados */
+/* Botões */
 .btn-group {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 15px;
 }
 
-/* Botões */
 .btn {
     display: inline-block;
     padding: 14px 30px;
@@ -108,23 +99,18 @@
 /* Mobile */
 @media (max-width: 768px) {
     .glass h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
-
     .nomes {
         font-size: 1.2rem;
     }
-
     .data {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
-
-    .glass {
-        padding: 30px 20px;
-    }
-
     .mensagem {
         font-size: 1rem;
-        margin: 15px 0;
+    }
+    .glass {
+        padding: 30px 20px;
     }
 }
