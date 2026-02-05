@@ -1,4 +1,4 @@
-/* Fundo com imagem e efeito glass */
+/* Body: fundo fixo e centralização */
 body {
     background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
     background-size: cover;
@@ -8,34 +8,38 @@ body {
     align-items: center;
     font-family: Arial, sans-serif;
     margin: 0;
+    color: #fff;
 }
 
+/* Container com efeito glass */
 .glass-container {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.2); /* Transparência leve */
+    backdrop-filter: blur(12px);           /* Blur suave */
     padding: 30px 40px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     max-width: 500px;
-    color: #fff;
+    width: 90%;                             /* Responsivo em telas pequenas */
     text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
+/* Títulos e textos */
 h1 {
     margin-bottom: 20px;
+    font-size: 1.8rem;
 }
-
 .texto {
     margin-bottom: 20px;
     line-height: 1.5;
+    font-size: 1rem;
 }
-
 .endereco {
     font-weight: bold;
     margin-bottom: 25px;
+    font-size: 1rem;
 }
 
-/* Botões */
+/* Botões principais */
 .btn, .btn-voltar {
     display: inline-block;
     padding: 12px 25px;
@@ -43,23 +47,37 @@ h1 {
     border-radius: 8px;
     text-decoration: none;
     font-weight: bold;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+/* Botão de ação */
 .btn {
     background-color: #ff7f50;
-    color: white;
+    color: #fff;
 }
-
 .btn:hover {
     background-color: #ff5722;
 }
 
+/* Botão secundário */
 .btn-voltar {
     background-color: rgba(255, 255, 255, 0.3);
     color: #fff;
 }
-
 .btn-voltar:hover {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Tornar o site mais responsivo */
+@media (max-width: 500px) {
+    .glass-container {
+        padding: 20px;
+    }
+    .btn, .btn-voltar {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+    h1 { font-size: 1.5rem; }
+    .texto, .endereco { font-size: 0.9rem; }
 }

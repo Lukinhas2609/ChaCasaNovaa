@@ -1,38 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presença Confirmada</title>
-    <link rel="stylesheet" href="confirmar.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presença Confirmada</title>
+<link rel="stylesheet" href="confirmar.css">
+<style>
+    /* Centralizar o conteúdo verticalmente e horizontalmente */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f2f2f2; /* cor de fundo neutra */
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+
+    .glass-container {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        padding: 30px 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        max-width: 500px;
+    }
+
+    h1 { margin-bottom: 20px; }
+
+    .texto { margin-bottom: 20px; line-height: 1.5; }
+
+    .endereco { font-weight: bold; margin-bottom: 25px; }
+
+    .btn, .btn-voltar {
+        display: inline-block;
+        padding: 12px 25px;
+        margin: 10px 5px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .btn {
+        background-color: #ff7f50;
+        color: #fff;
+    }
+
+    .btn:hover { background-color: #ff5722; }
+
+    .btn-voltar {
+        background-color: rgba(255,255,255,0.3);
+        color: #000;
+    }
+
+    .btn-voltar:hover { background-color: rgba(255,255,255,0.5); }
+</style>
 </head>
 <body>
 
 <div class="glass-container">
+    <h1>Presença confirmada! 💛</h1>
 
-    <div id="localizacao">
-        <h1>Presença confirmada! 💛</h1>
+    <p class="texto">
+        Ficamos muito felizes com a sua confirmação! <br>
+        Abaixo está a localização do nosso chá de casa nova:
+    </p>
 
-        <p class="texto">
-            Ficamos muito felizes com a sua confirmação! <br>
-            Abaixo está a localização do nosso chá de casa nova:
-        </p>
+    <p class="endereco">
+        📍 Rua Exemplo, 123 – Bairro Centro<br>
+        São Paulo – SP
+    </p>
 
-        <p class="endereco">
-            📍 Rua Exemplo, 123 – Bairro Centro<br>
-            São Paulo – SP
-        </p>
-
-        <a 
-           href="https://www.google.com/maps?q=Rua+Exemplo+123+São+Paulo"
-           target="_blank"
-           class="btn">
-           Ver no Google Maps
-        </a>
-
-        <a href="presentes.html" class="btn-voltar">Ver lista de presentes</a>
-    </div>
-
+    <a href="https://www.google.com/maps?q=Rua+Exemplo+123+São+Paulo" target="_blank" class="btn">Ver no Google Maps</a>
+    <a href="presentes.html" class="btn-voltar">Ver lista de presentes</a>
 </div>
 
 </body>

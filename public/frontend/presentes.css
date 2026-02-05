@@ -1,5 +1,5 @@
 body.pagina-interna {
-    background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+    background: rgb(51, 102, 153); /* substitui color(srgb ...) */
     background-size: cover;
     min-height: 100vh;
     display: flex;
@@ -21,21 +21,12 @@ body.pagina-interna {
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-.mensagem-acolhedora {
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
 .lista-colunas {
     list-style: none;
     padding: 0;
     margin: 20px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ajustado para mobile */
     gap: 15px;
 }
 
@@ -63,15 +54,15 @@ h1 {
     transition: 0.3s;
 }
 
-.lista-colunas li button:hover {
-    background-color: #ff5722;
+.lista-colunas li button:hover { 
+    background-color: #ff5722; 
 }
 
 .voltar {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
-    color: #fff;
+    color: #000; /* melhor contraste sobre fundo semi-transparente */
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 8px;
@@ -79,6 +70,23 @@ h1 {
     transition: 0.3s;
 }
 
-.voltar:hover {
-    background-color: rgba(255,255,255,0.5);
+.voltar:hover { 
+    background-color: rgba(255,255,255,0.5); 
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+    .lista-colunas {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    .card {
+        padding: 20px;
+    }
+    .lista-colunas li button {
+        padding: 4px 8px;
+        font-size: 0.9rem;
+    }
+    .voltar {
+        padding: 8px 16px;
+    }
 }
