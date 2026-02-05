@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Confirmar Presença</title>
 <link rel="stylesheet" href="confirmar.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 <script src="script.js" defer></script>
 </head>
 <body>
@@ -24,10 +24,9 @@
     </div>
 
     <button type="button" class="btn-secundario" onclick="adicionarPessoa()">+ Adicionar pessoa</button>
-<button type="button" class="btn" id="confirmar">Confirmar Presença</button>
-
 
     <div class="botoes">
+        <button type="button" class="btn" id="confirmar">Confirmar Presença</button>
         <a href="index.html" class="btn-voltar">← Voltar</a>
     </div>
 </div>
