@@ -1,0 +1,153 @@
+/* Hero Section */
+.hero {
+    height: 100vh; /* 100% da altura da viewport */
+    width: 100%;
+    background-image: url("./img/fundo.png");
+    background-size: cover; /* cobre toda a div */
+    background-position: 50% 30%; /* 50% horizontal, 30% vertical */
+    position: relative;
+    display: flex;
+    justify-content: center; /* centraliza horizontal */
+    align-items: flex-end;   /* conteúdo vai para baixo */
+    overflow: hidden;        /* nada vaza */
+    
+}
+/* Camada escura */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15); /* menos escuro */
+    display: flex;
+     justify-content: flex-end;
+    align-items: flex-end;
+    padding-bottom: 50px;
+     padding: 50px;
+}
+
+
+/* Glass effect */
+.glass {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px 50px;
+    text-align: center;
+    color: #ffe600;
+    max-width: 90%;
+    max-height: 80%; /* não cobre toda a tela */
+    overflow: auto;  /* rolagem se necessário */
+    animation: fadeUp 1.2s ease forwards;
+}
+
+.glass h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.nomes {
+    font-size: 1.4rem;
+    margin: 10px 0;
+}
+
+.data {
+    font-size: 1.2rem;
+    margin: 15px 0 25px;
+}
+
+/* Botão */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #000000;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #000000;
+    transform: scale(1.05);
+}
+
+/* Animação */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .glass h1 {
+        font-size: 2.2rem;
+        position: center;
+    }
+
+    .nomes {
+        font-size: 1.2rem;
+    }
+
+    .data {
+        font-size: 1.1rem;
+    }
+
+    .glass {
+        padding: 30px 20px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Mensagem acolhedora */
+.mensagem {
+    font-size: 1.1rem;
+    margin: 20px 0;
+    line-height: 1.5;
+    color: #ffffff;
+    text-align: center; /* centraliza a mensagem */
+}
+
+/* Botões agrupados */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #ffd966;
+    transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .mensagem {
+        font-size: 1rem;
+        margin: 15px 0;
+    }
+}

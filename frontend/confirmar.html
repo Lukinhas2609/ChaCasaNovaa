@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Presença</title>
+    <link rel="stylesheet" href="confirmar.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- FORMULÁRIO -->
+    <div id="formulario">
+        <h1>Confirme sua presença</h1>
+
+        <p class="texto">
+            Queridos amigos e familiares! <br><br>
+            Confirme sua presença para que possamos preparar tudo com carinho.
+        </p>
+
+        <form onsubmit="mostrarLocalizacao(event)" class="form">
+
+            <div id="lista-pessoas">
+                <div class="pessoa">
+                    <input type="text" placeholder="Nome" required>
+                    <input type="text" placeholder="Sobrenome" required>
+                    <button type="button" class="remover" onclick="this.parentElement.remove()">✕</button>
+                </div>
+            </div>
+
+            <button type="button" class="btn-secundario" onclick="adicionarPessoa()">
+                + Adicionar pessoa
+            </button>
+
+            <div class="botoes">
+                <a href="index.html" class="btn-voltar">← Voltar</a>
+                <button type="submit" class="btn">Confirmar Presença</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- LOCALIZAÇÃO -->
+    <div id="localizacao" class="hidden">
+        <h1>Presença confirmada! 💛</h1>
+
+        <p class="texto">
+            Ficamos muito felizes com a sua confirmação! <br>
+            Abaixo está a localização do nosso chá de casa nova:
+        </p>
+
+        <p class="endereco">
+            📍 Rua Exemplo, 123 – Bairro Centro<br>
+            São Paulo – SP
+        </p>
+
+        <a 
+           href="https://www.google.com/maps?q=Rua+Exemplo+123+São+Paulo"
+           target="_blank"
+           class="btn">
+           Ver no Google Maps
+        </a>
+
+        <a href="index.html" class="btn-voltar">Voltar ao início</a>
+    </div>
+
+</div>
+
+<script>
+function adicionarPessoa() {
+    const div = document.createElement("div");
+    div.className = "pessoa";
+    div.innerHTML = `
+        <input type="text" placeholder="Nome" required>
+        <input type="text" placeholder="Sobrenome" required>
+        <button type="button" class="remover" onclick="this.parentElement.remove()">✕</button>
+    `;
+    document.getElementById("lista-pessoas").appendChild(div);
+}
+
+function mostrarLocalizacao(event) {
+    event.preventDefault();
+    document.getElementById("formulario").style.display = "none";
+    document.getElementById("localizacao").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>

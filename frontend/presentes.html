@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Presentes</title>
+<link rel="stylesheet" href="presentes.css">
+</head>
+<body class="pagina-interna">
+
+<div class="card">
+    <!-- Mensagem acolhedora -->
+    <p class="mensagem-acolhedora">
+        Sua presença é muito importante!<br>
+        Escolha o presente que deseja trazer e faça parte desse momento especial.
+    </p>
+
+    <h1>Lista de Presentes 🎁</h1>
+
+    <ul id="lista" class="lista-colunas">
+        <!-- Lista será gerada pelo JS -->
+    </ul>
+
+    <a href="index.html" class="voltar">← Voltar</a>
+</div>
+
+<form id="formPresenca">
+    <input type="text" id="nome" placeholder="Nome" required>
+    <input type="text" id="sobrenome" placeholder="Sobrenome" required>
+    <button type="submit">Confirmar Presença</button>
+</form>
+
+<script>
+// Lista completa de presentes
+const presentes = [
+    {id:1, nome:'Jogo de facas', escolhido:false},
+    {id:2, nome:'Potes de vidro', escolhido:false},
+    {id:3, nome:'Tábua de corte', escolhido:false},
+    {id:4, nome:'Descanso de panela', escolhido:false},
+    {id:5, nome:'Escorredor de louça', escolhido:false},
+    {id:6, nome:'Ralador de alimentos / alho', escolhido:false},
+    {id:7, nome:'Peneira de inox', escolhido:false},
+    {id:8, nome:'Abridor de lata', escolhido:false},
+    {id:9, nome:'Formas / assadeiras', escolhido:false},
+    {id:10, nome:'Pano de prato', escolhido:false},
+    {id:11, nome:'Descascador', escolhido:false},
+    {id:12, nome:'Tapete para cozinha', escolhido:false},
+    {id:13, nome:'Escorredor de macarrão inox', escolhido:false},
+    {id:14, nome:'Jarra de suco', escolhido:false},
+    {id:15, nome:'Pano de pia', escolhido:false},
+    {id:16, nome:'Copo medidor', escolhido:false},
+    {id:17, nome:'Lixeira de chão 10L inox', escolhido:false},
+    {id:18, nome:'Cortador de pizza', escolhido:false},
+    {id:19, nome:'Seca-salada', escolhido:false},
+    {id:20, nome:'Utensílios de cozinha', escolhido:false},
+    {id:21, nome:'Garrafa térmica café', escolhido:false},
+    {id:22, nome:'Suporte para coador', escolhido:false},
+    {id:23, nome:'Ferro de passar', escolhido:false},
+    {id:24, nome:'Pano de chão', escolhido:false},
+    {id:25, nome:'Balde retrátil 3 litros', escolhido:false},
+    {id:26, nome:'Forma de gelo', escolhido:false},
+    {id:27, nome:'Espremedor de frutas', escolhido:false},
+    {id:28, nome:'Moedor de café', escolhido:false},
+    {id:29, nome:'Bule de chá', escolhido:false},
+    {id:30, nome:'Assadeira antiaderente', escolhido:false},
+    {id:31, nome:'Tábua de carne', escolhido:false},
+    {id:32, nome:'Kit de potes herméticos', escolhido:false},
+    {id:33, nome:'Luvas térmicas / pegador de panela', escolhido:false},
+    {id:34, nome:'Coqueteleira / liquidificador portátil', escolhido:false},
+    {id:35, nome:'Potes para temperos', escolhido:false},
+    {id:36, nome:'Frigideira antiaderente', escolhido:false},
+    {id:37, nome:'Panela de pressão', escolhido:false},
+    {id:38, nome:'Mixer / processador de alimentos', escolhido:false},
+    {id:39, nome:'Rolo de massa', escolhido:false},
+    {id:40, nome:'Escumadeira', escolhido:false},
+    {id:41, nome:'Colher medidora', escolhido:false},
+    {id:42, nome:'Jogo de xícaras ou canecas', escolhido:false},
+    {id:43, nome:'Garrafa de água reutilizável', escolhido:false},
+    {id:44, nome:'Forma de bolo ou pão', escolhido:false},
+    {id:45, nome:'Kit de facas para pão e legumes', escolhido:false},
+    {id:46, nome:'Tigelas de vidro ou inox', escolhido:false},
+    {id:47, nome:'Porta-talheres', escolhido:false},
+    {id:48, nome:'Descanso de panela de silicone', escolhido:false},
+    {id:49, nome:'Tábua dobrável', escolhido:false},
+    {id:50, nome:'Pegador de salada', escolhido:false}
+];
+
+const lista = document.getElementById('lista');
+
+// Função para desenhar a lista
+function desenharLista() {
+    lista.innerHTML = '';
+    presentes.forEach(item => {
+        const li = document.createElement('li');
+
+        const spanNome = document.createElement('span');
+        spanNome.textContent = item.nome;
+        li.appendChild(spanNome);
+
+        if(item.escolhido){
+            li.classList.add('reservado');
+            spanNome.textContent += ' - Reservado';
+        } else {
+            const btn = document.createElement('button');
+            btn.textContent = 'Reservar';
+            btn.onclick = () => {
+                const nome = prompt('Digite seu nome para reservar o presente:');
+                if(!nome) return;
+
+                item.escolhido = true;
+                // Aqui você enviaria para o back-end/MySQL
+                // fetch('/reservar', {method:'POST', body: JSON.stringify({id: item.id, convidado: nome}), headers:{'Content-Type':'application/json'}})
+                desenharLista();
+            };
+            li.appendChild(btn);
+        }
+
+        lista.appendChild(li);
+    });
+}
+
+desenharLista();
+</script>
+
+</body>
+</html>

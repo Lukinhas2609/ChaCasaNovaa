@@ -1,0 +1,102 @@
+body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: #ffffff;
+}
+
+.pagina-interna {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh; /* evita ocupar toda a tela */
+    overflow: hidden;  /* limita conteúdo fora do card */
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mensagem acolhedora */
+.mensagem-acolhedora {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    color: #000000;
+    text-align: center;
+}
+
+/* Lista em colunas com rolagem */
+.lista-colunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 0;
+    overflow-y: auto;
+    flex-grow: 1; /* lista ocupa espaço disponível dentro do card */
+}
+
+/* Itens da lista */
+.lista-colunas li {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lista-colunas li.reservado {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.lista-colunas button {
+    background: #ffd966;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lista-colunas button:hover {
+    background: #fff;
+}
+
+.voltar {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    background: #ffd966;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.voltar:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .lista-colunas {
+        grid-template-columns: 1fr;
+    }
+}
