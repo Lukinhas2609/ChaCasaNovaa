@@ -9,7 +9,7 @@
 body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-image: url("/public/localizacao.jpg");
+    background-image: url("/localizacao.jpg");
     background-size: 100% auto;       /* Preenche a tela */
     background-position: center;   /* Centraliza */
     background-repeat: no-repeat;  /* ❗ Impede repetição */
