@@ -7,58 +7,65 @@
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
- background-image: url("./img/IMG_0492.jpg");
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: center top;
-    position: relative;
-    display: flex;
-    justify-content: center;
+    background-image: url("/public/img/fundo.png");
+    background-size: cover; /* evita cortar cabeça/pés */
+    background-position: center ;
+    justify-content: flex-end; /* 🔥 glass na lateral */
     align-items: center;
 }
 
+/* Overlay */
 .overlay {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.25);
+
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding: 20px;
+    padding: 40px;
 }
 
+/* Glass */
 .glass {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px 50px;
-    text-align: center;
-    color: #5C4033;
-    max-width: 90%;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 24px;
+    padding: 45px 55px;
+    text-align: left;
+    color: #5c5a5a;
+
+    max-width: 420px;
+    width: 100%;
+
     animation: fadeUp 1s ease forwards;
 }
 
+/* Textos */
 .glass h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 15px;
 }
 
 .nomes {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
 .data {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 20px;
 }
 
 .mensagem {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 25px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
 }
 
 /* Botões */
@@ -66,7 +73,7 @@
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .btn {
@@ -99,19 +106,38 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+    .hero {
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .overlay {
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .glass {
+        text-align: center;
+        padding: 30px 25px;
+    }
+
+    .btn-group {
+        justify-content: center;
+    }
+
     .glass h1 {
         font-size: 2rem;
     }
+
     .nomes {
         font-size: 1.2rem;
     }
+
     .data {
         font-size: 1rem;
     }
+
     .mensagem {
         font-size: 1rem;
-    }
-    .glass {
-        padding: 30px 20px;
     }
 }

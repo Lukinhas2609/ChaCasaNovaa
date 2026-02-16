@@ -1,0 +1,112 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo da página */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: url("/public/img/confirmacao.jpg");
+    background-size: 100% auto;       /* Preenche a tela */
+    background-position: center;   /* Centraliza */
+    background-repeat: no-repeat;  /* ❗ Impede repetição */
+    background-attachment: fixed;  /* Efeito moderno opcional */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+}
+
+/* Card Glass */
+.glass-container {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px 35px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    animation: fadeUp 1s ease forwards;
+}
+
+/* Título */
+.glass-container h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* Texto */
+.texto {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Endereço */
+.endereco {
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+/* Botão principal */
+.btn {
+    display: block;
+    background: #ffffff;
+    color: #000;
+    padding: 14px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 12px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ffd966;
+    transform: scale(1.05);
+}
+
+/* Botão secundário */
+.btn-voltar {
+    display: block;
+    background: rgba(255,255,255,0.4);
+    color: #000;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background: rgba(255,255,255,0.7);
+    transform: scale(1.05);
+}
+
+/* Animação */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .glass-container {
+        padding: 30px 25px;
+    }
+
+    .glass-container h1 {
+        font-size: 1.6rem;
+    }
+}

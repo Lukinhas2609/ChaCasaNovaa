@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background:  #5b4b41;
+    color: #5b4b41;
+    text-align: center;
+}
+
+.hero {
+    padding: 80px 20px;
+    color: #ffffff;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.confirmacao {
+    background: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: -40px auto 40px;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #000000;
+}
+
+footer {
+    text-align: center;
+    color: #ffffff;
+
+    }
+
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #5b4b41;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #5b4b41;
+}
+
+footer {
+
+ padding: 40px;
+    border-radius: 20px;
+    max-width: 400px;
+    margin: -40px auto 40px;
+
+}
+/* Botões */
+.btn-group {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente se precisar */
+    margin-top: 20px;
+}
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #f2dfd3;
+    color:  #5b4b41;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+
+.btn:hover {
+    background: #000000;
+    
+    transform: scale(1.05);
+}
