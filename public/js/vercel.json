@@ -1,5 +1,5 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/telaprincipal/index.html" }
+  "routes": [
+    { "src": "/", "dest": "/index.html" }
   ]
 }
