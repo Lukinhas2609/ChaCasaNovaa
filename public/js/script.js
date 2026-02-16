@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAdicionar = document.getElementById("adicionar");
     const btnConfirmar = document.getElementById("confirmar");
 
-    // Evita erro se não existir na página
     if (btnAdicionar) {
         btnAdicionar.addEventListener("click", adicionarPessoa);
     }
@@ -69,6 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!confirm("Deseja confirmar a presença?")) return;
 
+            // 🔒 Evita envio duplo
+            btnConfirmar.disabled = true;
+            btnConfirmar.textContent = "Enviando...";
+
             console.log("Enviando:", pessoas);
 
             try {
@@ -83,12 +86,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 alert("Presença confirmada com sucesso ❤️");
 
-                // ajuste o caminho se estiver dentro de pasta
-                window.location.href = "../localizacao/localizacao.html";
+                // ✅ Caminho correto para o Vercel
+                window.location.href = "/localizacao.html";
 
             } catch (error) {
                 console.error("Erro Supabase:", error);
                 alert("Erro ao confirmar presença: " + error.message);
+
+                // Reativa o botão em caso de erro
+                btnConfirmar.disabled = false;
+                btnConfirmar.textContent = "Confirmar Presença";
             }
         });
     }
