@@ -9,7 +9,7 @@
 .hero {
     min-height: 100vh;
     width: 100%;
-    background-image: url("/public/img/fundo.png");
+    background-image: url("/public/telaprincipal/foto.jpg");
     background-size: cover; /* evita cortar cabeça/pés */
     background-position: center ;
     justify-content: flex-end; /* 🔥 glass na lateral */
