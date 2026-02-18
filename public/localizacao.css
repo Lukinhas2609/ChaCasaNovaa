@@ -8,16 +8,18 @@
 /* Fundo da página */
 body {
     min-height: 100vh;
-    background-size: 100% auto;       /* Preenche a tela */
-    background-position: center;   /* Centraliza */
-    background-repeat: no-repeat;  /* ❗ Impede repetição */
-    background-attachment: fixed;  /* Efeito moderno opcional */
     margin: 0;
+    padding: 20px;
     font-family: 'Montserrat', sans-serif;
     background: #5b4b41;
     color: #fff;
     text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 /* Card Glass */
 .glass-container {
