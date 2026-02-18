@@ -5,111 +5,114 @@
     box-sizing: border-box;
 }
 
-/* Hero */
+/* HERO */
 .hero {
     position: relative;
     min-height: 100vh;
     width: 100%;
-     background: linear-gradient(to bottom, #5b4b41, #7a685d);
-    background-size: cover;
-    background-position: center;
+    background: radial-gradient(circle at top, #7a685d 0%, #5b4b41 60%, #3e342d 100%);
     font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
 }
 
-/* Overlay sofisticado */
+/* Overlay elegante */
 .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.15),
-        rgba(0, 0, 0, 0.35)
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.55)
     );
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 60px;
+    padding: 80px;
 }
 
-/* Glass Premium */
+/* GLASS ULTRA PREMIUM */
 .glass {
-    background: rgba(255, 255, 255, 0.20);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-    border-radius: 30px;
-    padding: 60px;
+    border-radius: 36px;
+    padding: 70px;
     text-align: left;
     color: #ffffff;
 
-    max-width: 480px;
+    max-width: 520px;
     width: 100%;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.45),
+        inset 0 0 40px rgba(255, 255, 255, 0.05);
 
-    animation: fadeUp 1.2s ease forwards;
+    animation: fadeUp 1.4s ease forwards;
 }
 
-/* Títulos */
+/* TÍTULOS */
 .glass h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 3.3rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
 }
 
 .nomes {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .data {
     font-size: 1.1rem;
-    letter-spacing: 1px;
-    margin-bottom: 25px;
-    opacity: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    opacity: 0.85;
+    text-transform: uppercase;
 }
 
 .mensagem {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 35px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 45px;
     font-weight: 300;
 }
 
-/* Botões Premium */
+/* BOTÕES */
 .btn-group {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
 }
 
 .btn {
     display: inline-block;
-    padding: 14px 35px;
-    background: #f2dfd3;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #f2dfd3, #e5cfc2);
     color: #5b4b41;
     text-decoration: none;
     font-weight: 500;
-    border-radius: 40px;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    border-radius: 50px;
+    letter-spacing: 1.5px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 .btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
-/* Animação suave */
+/* ANIMAÇÃO SUAVE */
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
@@ -117,26 +120,26 @@
     }
 }
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE PREMIUM ===== */
 @media (max-width: 768px) {
 
     .overlay {
         justify-content: center;
-        padding: 25px;
-        background: rgba(0, 0, 0, 0.35);
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.55);
     }
 
     .glass {
         text-align: center;
-        padding: 35px 25px;
+        padding: 45px 30px;
     }
 
     .glass h1 {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
 
     .nomes {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .mensagem {
