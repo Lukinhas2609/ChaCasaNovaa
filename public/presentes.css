@@ -18,82 +18,66 @@ body.pagina-interna {
     color: #fff;
 }
 
-.card {
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(12px);
-    padding: 30px 40px;
-    border-radius: 20px;
-    max-width: 600px;
-    width: 90%;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    padding: 40px 20px;
+    background-color: #ff6f61;
+    color: white;
 }
 
-.lista-colunas {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.lista-presentes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 40px;
 }
 
-.lista-colunas li {
-    background: rgba(255,255,255,0.3);
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card-presente {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
 }
 
-.lista-colunas li.reservado {
-    background: rgba(255, 100, 100, 0.4);
+.card-presente:hover {
+    transform: translateY(-5px);
 }
 
-.lista-colunas li button {
-    background-color: #000000;
-    color: #fff;
+.card-presente img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-presente h3 {
+    margin: 15px 0;
+}
+
+.card-presente button {
+    background-color: #ff6f61;
+    color: white;
     border: none;
-    border-radius: 6px;
-    padding: 5px 10px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
 }
 
-.lista-colunas li button:hover {
-    background-color: #ff5722;
-}
-
-.voltar {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 8px;
-    background-color: rgba(255,255,255,0.3);
-    transition: 0.3s;
-}
-
-.voltar:hover {
-    background-color: rgba(255,255,255,0.5);
-}
-
-.mensagem-acolhedora {
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-.hero {
-    height: 100vh;
-    width: 100%;
-    
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.card-presente button:hover {
+    background-color: #e85b50;
 }
