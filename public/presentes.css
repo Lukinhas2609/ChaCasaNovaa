@@ -56,7 +56,7 @@ header h1 {
 }
 
 .card-presente button {
-    background-color: #ff6f61;
+    background-color: #f19824;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -94,8 +94,9 @@ body::before {
 }
 
 .reservado button {
-    background-color: rgb(255, 255, 255);
+    background-color: gray !important;
 }
+
 .mensagem-acolhedora {
     text-align: center;
     font-size: 18px;

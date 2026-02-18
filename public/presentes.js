@@ -33,25 +33,25 @@ async function carregarPresentes() {
         const li = document.createElement("li");
         li.className = "item-presente";
 
-        if (presente.reservado) {
+        if (!presente.disponivel) {
             li.classList.add("reservado");
         }
 
         li.innerHTML = `
             <span>
-                ${presente.nome}
-                ${presente.reservado && presente.reservado_por 
-                    ? `<small> (Reservado por ${presente.reservado_por})</small>` 
+                ${presente.nome_presente}
+                ${!presente.disponivel && presente.nome_pessoa 
+                    ? `<small> (Reservado por ${presente.nome_pessoa})</small>` 
                     : ""}
             </span>
-            <button ${presente.reservado ? "disabled" : ""}>
-                ${presente.reservado ? "Reservado" : "Reservar"}
+            <button ${!presente.disponivel ? "disabled" : ""}>
+                ${!presente.disponivel ? "Reservado" : "Reservar"}
             </button>
         `;
 
         const botao = li.querySelector("button");
 
-        if (!presente.reservado) {
+        if (presente.disponivel) {
             botao.addEventListener("click", () => reservarPresente(presente.id));
         }
 
@@ -69,8 +69,8 @@ async function reservarPresente(id) {
     const { error } = await supabaseClient
         .from("presentes")
         .update({ 
-            reservado: true,
-            reservado_por: nomePessoa
+            disponivel: false,
+            nome_pessoa: nomePessoa
         })
         .eq("id", id);
 
