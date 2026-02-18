@@ -1,9 +1,4 @@
-// Verifica se o script do Supabase carregou
-if (!window.supabase) {
-    console.error("Supabase não carregou!");
-} else {
-    console.log("Supabase carregado com sucesso");
-}
+
 const supabase = window.supabaseClient;
 
 const botoes = document.querySelectorAll(".btn-reservar");
