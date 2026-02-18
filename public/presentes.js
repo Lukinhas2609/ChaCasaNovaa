@@ -7,12 +7,13 @@ const supabaseClient = window.supabase.createClient(
     supabaseKey
 );
 
-// ===== Carregar Presentes =====
+// ===== Carregar lista =====
 async function carregarPresentes() {
-    const container = document.getElementById("lista-presentes");
-    if (!container) return;
 
-    container.innerHTML = "Carregando...";
+    const lista = document.getElementById("lista");
+    if (!lista) return;
+
+    lista.innerHTML = "<li>Carregando...</li>";
 
     const { data, error } = await supabaseClient
         .from("presentes")
@@ -21,37 +22,35 @@ async function carregarPresentes() {
 
     if (error) {
         console.error(error);
-        container.innerHTML = "Erro ao carregar presentes.";
+        lista.innerHTML = "<li>Erro ao carregar presentes.</li>";
         return;
     }
 
-    container.innerHTML = "";
+    lista.innerHTML = "";
 
     data.forEach(presente => {
 
-        const card = document.createElement("div");
-        card.className = "card-presente";
+        const li = document.createElement("li");
+        li.className = "item-presente";
 
-        card.innerHTML = `
-            <img src="${presente.imagem || 'foto.jpg'}" alt="${presente.nome}">
-            <h3>${presente.nome}</h3>
-            <p>${presente.descricao || ""}</p>
+        li.innerHTML = `
+            <span>${presente.nome}</span>
             <button ${presente.reservado ? "disabled" : ""}>
                 ${presente.reservado ? "Reservado" : "Reservar"}
             </button>
         `;
 
-        const btn = card.querySelector("button");
+        const botao = li.querySelector("button");
 
         if (!presente.reservado) {
-            btn.addEventListener("click", () => reservarPresente(presente.id));
+            botao.addEventListener("click", () => reservarPresente(presente.id));
         }
 
-        container.appendChild(card);
+        lista.appendChild(li);
     });
 }
 
-// ===== Reservar Presente =====
+// ===== Reservar presente =====
 async function reservarPresente(id) {
 
     if (!confirm("Deseja reservar este presente?")) return;
@@ -62,13 +61,12 @@ async function reservarPresente(id) {
         .eq("id", id);
 
     if (error) {
-        console.error(error);
         alert("Erro ao reservar presente.");
+        console.error(error);
         return;
     }
 
     alert("Presente reservado com sucesso ❤️");
-
     carregarPresentes();
 }
 
