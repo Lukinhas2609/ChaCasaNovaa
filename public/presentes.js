@@ -7,6 +7,12 @@ const supabaseClient = window.supabase.createClient(
     supabaseKey
 );
 
+// Verifica se o script do Supabase carregou
+if (!window.supabase) {
+    console.error("Supabase não carregou!");
+} else {
+    console.log("Supabase carregado com sucesso");
+}
 // ===== Carregar lista =====
 async function carregarPresentes() {
 
