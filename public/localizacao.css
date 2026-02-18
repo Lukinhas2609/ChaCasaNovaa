@@ -67,16 +67,11 @@ body {
     transition: 0.3s;
 }
 
-.btn:hover {
-    background: #ffd966;
-    transform: scale(1.05);
-}
-
 /* Botão secundário */
 .btn-voltar {
     display: block;
     background: rgba(255,255,255,0.4);
-    color: #000;
+    color: #fff9f9;
     padding: 12px;
     border-radius: 30px;
     text-decoration: none;
