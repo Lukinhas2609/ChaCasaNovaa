@@ -1,27 +1,31 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background:  #5b4b41;
-    color: #5b4b41;
+    background: #5b4b41;
+    color: white; /* corrigido */
     text-align: center;
 }
 
+/* HERO */
 .hero {
-    padding: 80px 20px;
+    padding: 60px 20px; /* reduzido */
     color: #ffffff;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
+/* FORMULÁRIO */
 .confirmacao {
-    background: rgb(255, 255, 255);
-    padding: 40px;
+    background: #ffffff;
+    padding: 35px;
     border-radius: 20px;
     max-width: 400px;
-    margin: -40px auto 40px;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    margin: 20px auto 40px; /* removido margin negativa */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    color: #5b4b41;
 }
 
 input, textarea {
@@ -29,16 +33,11 @@ input, textarea {
     padding: 12px;
     margin: 10px 0;
     border-radius: 10px;
-    border: 1px solid #000000;
+    border: 1px solid #ccc;
+    font-size: 14px;
 }
 
-footer {
-    text-align: center;
-    color: #ffffff;
-
-    }
-
-
+/* BOTÃO FORM */
 button {
     width: 100%;
     padding: 12px;
@@ -48,41 +47,67 @@ button {
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    background: #5b4b41;
+    background: #463830;
 }
 
-footer {
-
- padding: 40px;
-    border-radius: 20px;
-    max-width: 400px;
-    margin: -40px auto 40px;
-
-}
-/* Botões */
+/* BOTÕES EXTRAS */
 .btn-group {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Centraliza verticalmente se precisar */
+    justify-content: center;
     margin-top: 20px;
 }
+
 .btn {
     display: inline-block;
     padding: 14px 30px;
     background: #f2dfd3;
-    color:  #5b4b41;
+    color: #5b4b41;
     text-decoration: none;
     font-weight: bold;
     border-radius: 30px;
     transition: all 0.3s ease;
 }
 
-
 .btn:hover {
     background: #000000;
-    
+    color: white;
     transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+/* ===== RESPONSIVO CELULAR ===== */
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 40px 15px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .confirmacao {
+        margin: 20px 15px;
+        padding: 25px;
+    }
+
+    footer {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
 }
