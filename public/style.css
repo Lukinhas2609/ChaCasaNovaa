@@ -1,102 +1,115 @@
-/* Reset básico */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
+    position: relative;
     min-height: 100vh;
     width: 100%;
-    background-image: url("/foto.jpg");
-    background-size: cover; /* evita cortar cabeça/pés */
-    background-position: center ;
-    justify-content: flex-end; /* 🔥 glass na lateral */
-    align-items: center;
+    background-image: url("foto.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Overlay */
+/* Overlay sofisticado */
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.35)
+    );
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 40px;
+    padding: 60px;
 }
 
-/* Glass */
+/* Glass Premium */
 .glass {
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-    border-radius: 24px;
-    padding: 45px 55px;
+    border-radius: 30px;
+    padding: 60px;
     text-align: left;
-    color: #5c5a5a;
+    color: #ffffff;
 
-    max-width: 420px;
+    max-width: 480px;
     width: 100%;
 
-    animation: fadeUp 1s ease forwards;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+
+    animation: fadeUp 1.2s ease forwards;
 }
 
-/* Textos */
+/* Títulos */
 .glass h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 .nomes {
-    font-size: 1.6rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .data {
     font-size: 1.1rem;
-    margin-bottom: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    opacity: 0.9;
 }
 
 .mensagem {
     font-size: 1.05rem;
-    line-height: 1.6;
-    margin-bottom: 28px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    font-weight: 300;
 }
 
-/* Botões */
+/* Botões Premium */
 .btn-group {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
-    justify-content: flex-start;
 }
 
 .btn {
     display: inline-block;
-    padding: 14px 30px;
-    background: #ffffff;
-    color: #000000;
+    padding: 14px 35px;
+    background: linear-gradient(45deg, #d4af37, #b8952e);
+    color: #ffffff;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 30px;
+    font-weight: 500;
+    border-radius: 40px;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
 }
 
 .btn:hover {
-    background: #ffd966;
-    transform: scale(1.05);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
-/* Animação */
+/* Animação suave */
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -104,40 +117,33 @@
     }
 }
 
-/* Mobile */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
-    .hero {
-        justify-content: center;
-        padding: 20px;
-    }
 
     .overlay {
         justify-content: center;
-        padding: 20px;
+        padding: 25px;
+        background: rgba(0, 0, 0, 0.35);
     }
 
     .glass {
         text-align: center;
-        padding: 30px 25px;
-    }
-
-    .btn-group {
-        justify-content: center;
+        padding: 35px 25px;
     }
 
     .glass h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     .nomes {
-        font-size: 1.2rem;
-    }
-
-    .data {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 
     .mensagem {
         font-size: 1rem;
+    }
+
+    .btn-group {
+        justify-content: center;
     }
 }
