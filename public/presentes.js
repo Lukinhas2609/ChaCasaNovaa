@@ -13,84 +13,35 @@ if (!window.supabase) {
 } else {
     console.log("Supabase carregado com sucesso");
 }
-// ===== Carregar lista =====
-async function carregarPresentes() {
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-    const lista = document.getElementById("lista");
-    if (!lista) return;
+const botoes = document.querySelectorAll(".btn-reservar");
 
-    lista.innerHTML = "<li>Carregando...</li>";
+botoes.forEach(botao => {
+    botao.addEventListener("click", async () => {
 
-    const { data, error } = await supabaseClient
-        .from("presentes")
-        .select("*")
-        .order("id", { ascending: true });
+        const id = botao.dataset.id;
 
-    if (error) {
-        console.error(error);
-        lista.innerHTML = "<li>Erro ao carregar presentes.</li>";
-        return;
-    }
+        const nome = prompt("Digite seu nome para reservar:");
 
-    lista.innerHTML = "";
+        if (!nome) return;
 
-    data.forEach(presente => {
+        const { error } = await supabase
+            .from("presentes")
+            .update({
+                reservado: true,
+                reservado_por: nome
+            })
+            .eq("id", id);
 
-        const li = document.createElement("li");
-        li.className = "item-presente";
-
-        if (!presente.disponivel) {
-            li.classList.add("reservado");
+        if (error) {
+            alert("Erro ao reservar.");
+            console.error(error);
+        } else {
+            alert("Presente reservado com sucesso!");
+            botao.innerText = "Reservado";
+            botao.disabled = true;
         }
 
-        li.innerHTML = `
-            <span>
-                ${presente.nome_presente}
-                ${!presente.disponivel && presente.nome_pessoa 
-                    ? `<small> (Reservado por ${presente.nome_pessoa})</small>` 
-                    : ""}
-            </span>
-            <button ${!presente.disponivel ? "disabled" : ""}>
-                ${!presente.disponivel ? "Reservado" : "Reservar"}
-            </button>
-        `;
-
-        const botao = li.querySelector("button");
-
-        if (presente.disponivel) {
-            botao.addEventListener("click", () => reservarPresente(presente.id));
-        }
-
-        lista.appendChild(li);
     });
-}
-
-// ===== Reservar presente =====
-async function reservarPresente(id) {
-
-    const nomePessoa = prompt("Digite seu nome para reservar:");
-
-    if (!nomePessoa) return;
-
-    const { error } = await supabaseClient
-        .from("presentes")
-        .update({ 
-            disponivel: false,
-            nome_pessoa: nomePessoa
-        })
-        .eq("id", id);
-
-    if (error) {
-        alert("Erro ao reservar presente.");
-        console.error(error);
-        return;
-    }
-
-    alert("Presente reservado com sucesso ❤️");
-    carregarPresentes();
-}
-
-// ===== Inicialização =====
-document.addEventListener("DOMContentLoaded", () => {
-    carregarPresentes();
 });

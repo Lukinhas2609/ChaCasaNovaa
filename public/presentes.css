@@ -94,3 +94,8 @@ font-style: italic;
 
 }
 
+.btn-group {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
