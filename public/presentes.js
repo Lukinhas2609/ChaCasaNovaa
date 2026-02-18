@@ -1,33 +1,37 @@
+document.addEventListener("DOMContentLoaded", () => {
 
-const supabase = window.supabaseClient;
+  const supabase = window.supabaseClient;
 
-const botoes = document.querySelectorAll(".btn-reservar");
+  const botoes = document.querySelectorAll(".btn-reservar");
 
-botoes.forEach(botao => {
+  botoes.forEach(botao => {
+
     botao.addEventListener("click", async () => {
 
-        const id = botao.dataset.id;
+      const id = botao.dataset.id;
+      const nome = prompt("Digite seu nome para reservar:");
 
-        const nome = prompt("Digite seu nome para reservar:");
+      if (!nome) return;
 
-        if (!nome) return;
+      const { error } = await supabase
+        .from("presentes")
+        .update({
+          reservado: true,
+          reservado_por: nome
+        })
+        .eq("id", id);
 
-        const { error } = await supabase
-            .from("presentes")
-            .update({
-                reservado: true,
-                reservado_por: nome
-            })
-            .eq("id", id);
-
-        if (error) {
-            alert("Erro ao reservar.");
-            console.error(error);
-        } else {
-            alert("Presente reservado com sucesso!");
-            botao.innerText = "Reservado";
-            botao.disabled = true;
-        }
+      if (error) {
+        alert("Erro ao reservar.");
+        console.error(error);
+      } else {
+        alert("Presente reservado com sucesso!");
+        botao.innerText = "Reservado";
+        botao.disabled = true;
+      }
 
     });
+
+  });
+
 });
