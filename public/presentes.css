@@ -1,3 +1,23 @@
+body.pagina-interna {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/presentes.jpg");
+    height: 100vh;
+    width: 100%;
+    
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
