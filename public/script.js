@@ -11,7 +11,8 @@ if (!window.supabase) {
     console.log("Supabase carregado com sucesso");
 }
 
-const supabase = window.supabase.createClient(
+// 👇 usamos outro nome para evitar conflito
+const supabaseClient = window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
@@ -65,17 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!valido) return;
-
             if (!confirm("Deseja confirmar a presença?")) return;
 
-            // 🔒 Evita envio duplo
             btnConfirmar.disabled = true;
             btnConfirmar.textContent = "Enviando...";
 
             console.log("Enviando:", pessoas);
 
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from("presencas")
                     .insert(pessoas)
                     .select();
@@ -83,21 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (error) throw error;
 
                 console.log("Sucesso:", data);
-
                 alert("Presença confirmada com sucesso ❤️");
 
-                // ✅ Caminho correto para o Vercel
                 window.location.href = "/localizacao.html";
 
             } catch (error) {
                 console.error("Erro Supabase:", error);
                 alert("Erro ao confirmar presença: " + error.message);
 
-                // Reativa o botão em caso de erro
                 btnConfirmar.disabled = false;
                 btnConfirmar.textContent = "Confirmar Presença";
             }
         });
     }
-
 });
