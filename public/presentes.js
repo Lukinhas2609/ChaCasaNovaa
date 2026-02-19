@@ -12,6 +12,9 @@ async function reservarPresente(id) {
 
     const nome = prompt("Digite seu nome:");
 
+    console.log("ID clicado:", id);
+    console.log("Nome digitado:", nome);
+
     const { data, error } = await supabaseClient
         .from("presentes")
         .update({
@@ -19,10 +22,10 @@ async function reservarPresente(id) {
             nome_reserva: nome
         })
         .eq("id", id)
-        .select(); // 👈 ADICIONE ISSO
+        .select();
 
-    console.log("Resultado update:", data);
-    console.log("Erro:", error);
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
 
     if (error) {
         alert("Erro ao reservar.");
@@ -30,7 +33,7 @@ async function reservarPresente(id) {
     }
 
     if (!data || data.length === 0) {
-        alert("RLS bloqueou a operação.");
+        alert("Nada foi atualizado.");
         return;
     }
 
