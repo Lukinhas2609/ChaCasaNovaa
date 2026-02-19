@@ -17,6 +17,10 @@ async function reservarPresente(id) {
         alert("Digite um nome válido.");
         return;
     }
+botao.addEventListener("click", () => {
+    console.log("Botão clicado", presente.id);
+    reservarPresente(presente.id);
+});
 
     const { error } = await supabaseClient
         .from("presentes")
