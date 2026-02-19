@@ -9,10 +9,10 @@ const supabaseClient = window.supabase.createClient(
 console.log("Supabase carregado:", supabaseClient);
 
 // ===== Reservar presente =====
-async function reservarPresente(id) {
+async function reservarPresente(nome_reserva) {
 
-    const nome = prompt("Digite seu nome para reservar:");
 
+  const nome = prompt("Digite seu nome para reservar:");
     if (!nome || nome.trim().length < 3) {
         alert("Digite um nome válido.");
         return;
@@ -22,9 +22,9 @@ async function reservarPresente(id) {
         .from("presentes")
         .update({
             disponivel: false,
-            nome_reserva: nome.trim()
+            nome_pessoa: nome.trim()
         })
-        .eq("id", id)
+        .eq("nome_presente", nomePresente)
         .eq("disponivel", true)
         .select();
 
@@ -43,19 +43,10 @@ async function reservarPresente(id) {
     location.reload();
 }
 
-
-// ===== Ligar botão =====
 document.addEventListener("DOMContentLoaded", () => {
-
-    const botoes = document.querySelectorAll(".btn-reservar");
-
-    botoes.forEach(botao => {
-
+    document.querySelectorAll(".btn-reservar").forEach(botao => {
         botao.addEventListener("click", () => {
-            const id = botao.getAttribute("data-id");
-            reservarPresente(id);
+            reservarPresente(botao.dataset.presente);
         });
-
     });
-
 });
