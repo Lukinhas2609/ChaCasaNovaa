@@ -8,7 +8,6 @@ const supabaseClient = window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
-console.log("Supabase carregado:", supabaseClient);
 
 // ===== Reservar presente =====
 async function reservarPresente(nome_reserva) {
