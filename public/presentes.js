@@ -8,36 +8,32 @@ const supabaseClient = window.supabase.createClient(
 );
 console.log("Supabase carregado:", supabaseClient);
 
-
-// ===== Reservar presente =====
 async function reservarPresente(id) {
 
-    const nome = prompt("Digite seu nome para reservar:");
+    const nome = prompt("Digite seu nome:");
 
-    if (!nome || nome.trim().length < 3) {
-        alert("Digite um nome válido.");
-        return;
-    }
-botao.addEventListener("click", () => {
-    console.log("Botão clicado", presente.id);
-    reservarPresente(presente.id);
-});
-
-    const { error } = await supabaseClient
+    const { data, error } = await supabaseClient
         .from("presentes")
-        .update({ 
+        .update({
             disponivel: false,
-            nome_reserva: nome.trim()
+            nome_reserva: nome
         })
         .eq("id", id)
-        .eq("disponivel", true); // 🔒 evita reserva dupla
+        .select(); // 👈 ADICIONE ISSO
+
+    console.log("Resultado update:", data);
+    console.log("Erro:", error);
 
     if (error) {
-        alert("Erro ao reservar presente.");
-        console.error(error);
+        alert("Erro ao reservar.");
         return;
     }
 
-    alert("Presente reservado com sucesso ❤️");
+    if (!data || data.length === 0) {
+        alert("RLS bloqueou a operação.");
+        return;
+    }
+
+    alert("Reservado com sucesso!");
     carregarPresentes();
 }
