@@ -8,63 +8,24 @@ const supabaseClient = window.supabase.createClient(
 );
 console.log("Supabase carregado:", window.supabaseClient);
 
-// ===== Carregar lista =====
-async function carregarPresentes() {
-
-    const lista = document.getElementById("lista");
-    if (!lista) return;
-
-    lista.innerHTML = "<li>Carregando...</li>";
-
-    const { data, error } = await supabaseClient
-        .from("presentes")
-        .select("*")
-        .order("id", { ascending: true });
-
-    if (error) {
-        console.error(error);
-        lista.innerHTML = "<li>Erro ao carregar presentes.</li>";
-        return;
-    }
-
-    lista.innerHTML = "";
-
-    data.forEach(presente => {
-
-        const li = document.createElement("li");
-        li.className = "item-presente";
-
-        if (presente.disponivel === false) {
-            li.classList.add("reservado");
-        }
-
-        li.innerHTML = `
-            <span>${presente.nome_presente}</span>
-            <button ${presente.disponivel === false ? "disabled" : ""}>
-                ${presente.disponivel === false ? "Reservado" : "Reservar"}
-            </button>
-        `;
-
-        const botao = li.querySelector("button");
-
-        if (presente.disponivel === true) {
-            botao.addEventListener("click", () => reservarPresente(presente.id));
-        }
-
-        lista.appendChild(li);
-    });
-}
-
-
 // ===== Reservar presente =====
 async function reservarPresente(id) {
+
+    const nome = prompt("Digite seu nome para reservar:");
+
+    if (!nome || nome.trim().length < 3) {
+        alert("Digite um nome válido.");
+        return;
+    }
 
     const { error } = await supabaseClient
         .from("presentes")
         .update({ 
-            disponivel: false
+            disponivel: false,
+            nome_reserva: nome.trim()
         })
-        .eq("id", id);
+        .eq("id", id)
+        .eq("disponivel", true); // 🔒 evita reserva dupla
 
     if (error) {
         alert("Erro ao reservar presente.");
@@ -75,9 +36,3 @@ async function reservarPresente(id) {
     alert("Presente reservado com sucesso ❤️");
     carregarPresentes();
 }
-
-
-// ===== Inicialização =====
-document.addEventListener("DOMContentLoaded", () => {
-    carregarPresentes();
-});
