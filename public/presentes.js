@@ -8,35 +8,54 @@ const supabaseClient = window.supabase.createClient(
 );
 console.log("Supabase carregado:", supabaseClient);
 
+// ===== Reservar presente =====
 async function reservarPresente(id) {
 
-    const nome = prompt("Digite seu nome:");
+    const nome = prompt("Digite seu nome para reservar:");
 
-    console.log("ID clicado:", id);
-    console.log("Nome digitado:", nome);
+    if (!nome || nome.trim().length < 3) {
+        alert("Digite um nome válido.");
+        return;
+    }
 
     const { data, error } = await supabaseClient
         .from("presentes")
         .update({
             disponivel: false,
-            nome_reserva: nome
+            nome_reserva: nome.trim()
         })
         .eq("id", id)
+        .eq("disponivel", true)
         .select();
 
-    console.log("DATA:", data);
-    console.log("ERROR:", error);
-
     if (error) {
+        console.error(error);
         alert("Erro ao reservar.");
         return;
     }
 
     if (!data || data.length === 0) {
-        alert("Nada foi atualizado.");
+        alert("Este presente já foi reservado.");
         return;
     }
 
-    alert("Reservado com sucesso!");
-    carregarPresentes();
+    alert("Presente reservado com sucesso ❤️");
+    location.reload();
 }
+
+
+// ===== Ligar botão =====
+document.addEventListener("DOMContentLoaded", () => {
+
+    const botoes = document.querySelectorAll(".btn-reservar");
+
+    botoes.forEach(botao => {
+
+        botao.addEventListener("click", () => {
+            const id = botao.getAttribute("data-id");
+            reservarPresente(id);
+        });
+
+    });
+
+});
