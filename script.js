@@ -1,96 +1,92 @@
 // ===== SUPABASE =====
 const supabaseUrl = "https://xyjgraqnskpmbshgvwqd.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh5amdyYXFuc2twbWJzaGd2d3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NjE5MzMsImV4cCI6MjA4NzAzNzkzM30.driW8fFzTMzAJrDrKocxvGhz_Wv1rOviJH8iFNashEE";
-// 👇 usamos outro nome para evitar conflito
-const supabaseClient = window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey
-);
-console.log("Supabase carregado:", window.supabaseClient);
 
-// Verifica se o script do Supabase carregou
-if (!window.supabase) {
-    console.error("Supabase não carregou!");
-} else {
-    console.log("Supabase carregado com sucesso");
+if (typeof supabase === "undefined") {
+  console.error("Supabase não carregou! Confira a ordem dos scripts no HTML.");
 }
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+console.log("Supabase pronto:", supabaseClient);
 
 // ===== Adicionar pessoa =====
 function adicionarPessoa() {
-    const lista = document.getElementById("lista-pessoas");
-    if (!lista) return;
+  const lista = document.getElementById("lista-pessoas");
+  if (!lista) return;
 
-    const div = document.createElement("div");
-    div.className = "pessoa";
-    div.innerHTML = `
-        <input type="text" placeholder="Nome">
-        <div class="erro" style="color:red; font-size:12px;"></div>
-        <button type="button" class="remover">✕</button>
-    `;
+  const div = document.createElement("div");
+  div.className = "pessoa";
+  div.innerHTML = `
+    <input type="text" placeholder="Nome">
+    <div class="erro" style="color:red; font-size:12px;"></div>
+    <button type="button" class="remover">✕</button>
+  `;
 
-    div.querySelector(".remover").addEventListener("click", () => div.remove());
-
-    lista.appendChild(div);
+  div.querySelector(".remover").addEventListener("click", () => div.remove());
+  lista.appendChild(div);
 }
 
 // ===== DOM =====
 document.addEventListener("DOMContentLoaded", () => {
+  const btnAdicionar = document.getElementById("adicionar");
+  const btnConfirmar = document.getElementById("confirmar");
 
-    const btnAdicionar = document.getElementById("adicionar");
-    const btnConfirmar = document.getElementById("confirmar");
+  if (btnAdicionar) {
+    btnAdicionar.addEventListener("click", adicionarPessoa);
+  }
 
-    if (btnAdicionar) {
-        btnAdicionar.addEventListener("click", adicionarPessoa);
-    }
+  if (btnConfirmar) {
+    btnConfirmar.addEventListener("click", async () => {
+      const pessoasDiv = document.querySelectorAll(".pessoa");
+      let valido = true;
 
-    if (btnConfirmar) {
-        btnConfirmar.addEventListener("click", async () => {
+      const pessoas = [...pessoasDiv].map((div) => {
+        const input = div.querySelector("input");
+        const erro = div.querySelector(".erro");
 
-            const pessoasDiv = document.querySelectorAll(".pessoa");
-            let valido = true;
+        const nome = (input?.value || "").trim();
+        if (erro) erro.textContent = "";
 
-            const pessoas = [...pessoasDiv].map(div => {
-                const nome = div.querySelector("input").value.trim();
-                const erro = div.querySelector(".erro");
+        if (!nome) {
+          if (erro) erro.textContent = "Nome obrigatório";
+          valido = false;
+        } else if (nome.length < 3) {
+          if (erro) erro.textContent = "Nome muito curto";
+          valido = false;
+        }
 
-                erro.textContent = "";
+        return { nome };
+      });
 
-                if (!nome) {
-                    erro.textContent = "Nome obrigatório";
-                    valido = false;
-                }
+      if (!valido) return;
+      if (!confirm("Deseja confirmar a presença?")) return;
 
-                return { nome };
-            });
+      btnConfirmar.disabled = true;
+      btnConfirmar.textContent = "Enviando...";
 
-            if (!valido) return;
-            if (!confirm("Deseja confirmar a presença?")) return;
+      console.log("Enviando:", pessoas);
 
-            btnConfirmar.disabled = true;
-            btnConfirmar.textContent = "Enviando...";
+      try {
+        const { data, error } = await supabaseClient
+          .from("presencas")
+          .insert(pessoas)
+          .select();
 
-            console.log("Enviando:", pessoas);
+        console.log("INSERT retorno:", { data, error });
 
-            try {
-                const { data, error } = await supabaseClient
-                    .from("presencas")
-                    .insert(pessoas)
-                    .select();
+        if (error) throw error;
 
-                if (error) throw error;
+        alert("Presença confirmada com sucesso ❤️");
 
-                console.log("Sucesso:", data);
-                alert("Presença confirmada com sucesso ❤️");
+        // ✅ melhor para GitHub Pages (evita quebrar por causa do "/")
+        window.location.href = "./localizacao.html";
+      } catch (err) {
+        console.error("Erro Supabase:", err);
+        alert("Erro ao confirmar presença: " + (err?.message || "desconhecido"));
 
-                window.location.href = "/localizacao.html";
-
-            } catch (error) {
-                console.error("Erro Supabase:", error);
-                alert("Erro ao confirmar presença: " + error.message);
-
-                btnConfirmar.disabled = false;
-                btnConfirmar.textContent = "Confirmar Presença";
-            }
-        });
-    }
+        btnConfirmar.disabled = false;
+        btnConfirmar.textContent = "Confirmar Presença";
+      }
+    });
+  }
 });
