@@ -13,55 +13,63 @@ const supabaseClient = window.supabase.createClient(
 
 console.log("Supabase pronto:", supabaseClient);
 
-botoes.forEach(botao => {
+// ===== DOM =====
+document.addEventListener("DOMContentLoaded", () => {
 
-    botao.addEventListener("click", async () => {
+    const botoes = document.querySelectorAll(".btn-reservar");
 
-        const nomePresente = botao.dataset.presente;
-        const nomePessoa = prompt("Digite seu nome para reservar:");
+    if (botoes.length === 0) {
+        console.warn("Nenhum botão de reservar encontrado");
+        return;
+    }
 
-        if (!nomePessoa || nomePessoa.trim().length < 3) {
-            alert("Digite um nome válido.");
-            return;
-        }
+    botoes.forEach(botao => {
 
-        if (!confirm("Deseja reservar este presente?")) return;
+        botao.addEventListener("click", async () => {
 
-        botao.disabled = true;
-        botao.textContent = "Reservando...";
+            const nomePresente = botao.dataset.presente;
+            const nomePessoa = prompt("Digite seu nome para reservar:");
 
-        try {
-
-            const { data, error } = await supabaseClient
-                .from("presentes")
-                .update({
-                    nome_pessoa: nomePessoa.trim(),
-                    disponivel: false
-                })
-                .eq("nome_presente", nomePresente)
-                .eq("disponivel", true)
-                .select();
-
-            // 👇 DEBUG IMPORTANTE
-            console.log("UPDATE retorno:", { data, error });
-
-            if (error) throw error;
-
-            if (!data || data.length === 0) {
-                alert("Este presente já foi reservado (nenhuma linha atualizada).");
-                botao.textContent = "Indisponível";
+            if (!nomePessoa || nomePessoa.trim().length < 3) {
+                alert("Digite um nome válido.");
                 return;
             }
 
-            alert("Presente reservado com sucesso ❤️");
-            botao.textContent = "Reservado";
+            if (!confirm("Deseja reservar este presente?")) return;
 
-        } catch (error) {
+            botao.disabled = true;
+            botao.textContent = "Reservando...";
 
-            console.error("Erro Supabase:", error);
-            alert("Erro ao reservar presente.");
-            botao.disabled = false;
-            botao.textContent = "Reservar";
-        }
+            try {
+                const { data, error } = await supabaseClient
+                    .from("presentes")
+                    .update({
+                        nome_pessoa: nomePessoa.trim(),
+                        disponivel: false
+                    })
+                    .eq("nome_presente", nomePresente)
+                    .eq("disponivel", true)
+                    .select();
+
+                if (error) throw error;
+
+                if (!data || data.length === 0) {
+                    alert("Este presente já foi reservado.");
+                    botao.textContent = "Indisponível";
+                    return;
+                }
+
+                alert("Presente reservado com sucesso ❤️");
+                botao.textContent = "Reservado";
+
+            } catch (error) {
+                console.error("Erro Supabase:", error);
+                alert("Erro ao reservar presente.");
+                botao.disabled = false;
+                botao.textContent = "Reservar";
+            }
+        });
+
     });
+
 });
